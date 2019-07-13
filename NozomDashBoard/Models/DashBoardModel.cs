@@ -58,7 +58,7 @@ namespace NozomDashBoard.Models
             if (op == true)
             {
                 Useritems.Reverse();
-                Useritems.RemoveAt(4);
+                Useritems.RemoveAt(3);
             }
 
             m_Users = new SelectList(Useritems, "id", "UserName");

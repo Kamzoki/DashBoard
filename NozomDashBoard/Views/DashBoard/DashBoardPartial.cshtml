@@ -20,79 +20,8 @@
         <div class="container-fluied">
             <div class="row">
 
-                <!--Ahmad Abdullatef-->
-                <div class="col-md-3">
-                    <!--for demo wrap-->
-                    <div class="tbl-header">
-                        <table cellpadding="0" cellspacing="0" border="0" id="2">
-                            <thead>
-                                <tr>
-                                    <th>Ahmad Abdullatef</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="tbl-content">
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <tbody>
-                                @if (Model.m_AllTasks != null)
-                                {
-                                    foreach (var task in Model.m_AllTasks)
-                                    {
-                                        if (task.UserId == 2)
-                                        {
-                                            if (task.DeadLine.ToShortDateString() == DateTime.Now.ToShortDateString())
-                                            {
-                                                <tr style="background-color:#870505">
-                                                    <td>
-                                                        <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 2})" target="popup"
-                                                           onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 2})', 'popup', 'width=600,height=600'); return false;">
-                                                            @Html.DisplayName(task.Title)
-                                                        </a>
-                                                        @if (Model.isAdmin)
-	                                                    {
-                                                            using (Html.BeginForm("FinishTask", "DashBoard", new { taskid = task.id, ProjectID  = Model.m_CurrentProjectID},FormMethod.Post))
-                                                            {
-                                                                <button type="submit" class="btn-block btn-success">Finished</button>
-                                                            }
-
-                                                        }
-                                                         
-                                                    </td>
-                                                </tr>
-                                            }
-
-                                            else
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 2})"
-                                                           onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 2})', 'popup', 'width=900,height=800'); return false;">
-                                                            @Html.DisplayName(task.Title)
-                                                        </a>
-                                                        @if (Model.isAdmin)
-                                                        {
-                                                            using (Html.BeginForm("FinishTask", "DashBoard", new { taskid = task.id, ProjectID = Model.m_CurrentProjectID }, FormMethod.Post))
-                                                            {
-                                                                <button type="submit" class="btn-block btn-success">Finished</button>
-                                                            }
-
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            }
-                                        }
-                                    }
-                                }
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
                 <!--Ahmad Mansy-->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <!--for demo wrap-->
                     <div class="tbl-header">
                         <table cellpadding="0" cellspacing="0" border="0">
@@ -162,7 +91,7 @@
                 </div>
 
                 <!--Abdullah Sa'ad-->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <!--for demo wrap-->
                     <div class="tbl-header">
                         <table cellpadding="0" cellspacing="0" border="0" id="4">
@@ -232,7 +161,7 @@
                 </div>
 
                 <!--Omar Aref-->
-                <div name="Omar Aref Table" class="col-md-3">
+                <div name="Omar Aref Table" class="col-md-4">
                     <!--for demo wrap-->
                     <div class="tbl-header">
                         <table cellpadding="0" cellspacing="0" border="0" id="3">
