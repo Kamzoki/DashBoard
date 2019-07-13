@@ -1,0 +1,41 @@
+﻿@model NozomDashBoard.Models.DashBoardModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminIndex</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="at_top text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn btn-group">
+
+                        @Html.ActionLink("New Task", "AddTask", "DashBoard", new { ProjectID = Model.m_CurrentProjectID }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Sign out", "LogOff", "Account",null, new { @class = "btn btn-danger" })
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    
+
+     @Html.Partial("DashBoardPartial")
+    
+</body>
+</html>

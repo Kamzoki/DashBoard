@@ -1,0 +1,43 @@
+﻿@model NozomDashBoard.Models.Account_Model
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LogIn</title>
+   
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+
+    @if (Convert.ToBoolean(TempData["isAuth"]) == false)
+    {
+        <body onload="alert('Username or Password is incorrect!')">
+            @using (Html.BeginForm("Account", "Account", FormMethod.Post))
+            {
+                @Html.Partial("AccountOperations")
+            }
+            <script src="~/Scripts/bootstrap.min.js"></script>
+        </body>
+    }
+    else
+    {
+        <body>
+            @using (Html.BeginForm("Account", "Account", FormMethod.Post))
+            {
+                @Html.Partial("AccountOperations")
+            }
+            <script src="~/Scripts/bootstrap.min.js"></script>
+        </body>
+    }
+
+
+            
+
+</html>

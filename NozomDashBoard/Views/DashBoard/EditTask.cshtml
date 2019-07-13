@@ -1,0 +1,23 @@
+﻿@model NozomDashBoard.Models.DashBoardModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditTask</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    @using(Html.BeginForm("EditTask", "DashBoard", FormMethod.Post))
+    {
+        @Html.Partial("TaskOperations")
+    }
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a0e0bb4267e4210ad6c2bf418af95ed" Name="Diagram1">
+        <EntityTypeShape EntityType="NozomDashBoardModel.DashBoardData" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="NozomDashBoardModel.Project" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="NozomDashBoardModel.Users" Width="1.5" PointX="3" PointY="5.75" />
+        <AssociationConnector Association="NozomDashBoardModel.FK_DashBoardData_Project" />
+        <AssociationConnector Association="NozomDashBoardModel.FK_DashBoardData_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

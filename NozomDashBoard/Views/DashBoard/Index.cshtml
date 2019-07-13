@@ -1,0 +1,14 @@
+﻿@model NozomDashBoard.Models.DashBoardModel
+<html>
+<head>
+    <title>DashBoard</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<body>
+    @Html.ActionLink("Sign out", "LogOff", "Account",null, new { @class = "btn btn-danger" })
+</body>
+   
+    @Html.Partial("DashBoardPartial")
+</html>

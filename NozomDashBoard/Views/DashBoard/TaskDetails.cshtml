@@ -1,0 +1,113 @@
+﻿@model NozomDashBoard.Models.DashBoardModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TaskDetails</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    
+</head>
+<body>
+
+    <div class="task_details">
+        <div class="container">
+            <div class="row">
+                @using (Html.BeginForm("EditTask", "DashBoard", FormMethod.Post))
+                {
+                    <div class="col-md-12 col-sm-12">
+                        <div class="task_info text-center">
+                            <h2 class="tasktitle">
+                                @Html.DisplayNameFor(m => m.m_Task.Title)
+                            </h2>
+                        </div>
+                    </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                @Html.TextAreaFor(m => m.m_Task.Details, new { @readonly = "readonly", @class = "form-control text-center" })
+                            </div>
+
+                        </div>
+
+
+
+
+                    if (Model.isAccissable == true)
+                    {
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                @Html.TextAreaFor(m => m.m_Task.Notes, new { @class = "form-control text-center" })
+                            </div>
+
+                        </div>
+
+
+                    }
+                    else
+                    {
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                @Html.TextAreaFor(m => m.m_Task.Notes, new { @readonly = "readonly", @class = "form-control text-center" })
+                            </div>
+
+                        </div>
+
+
+                    }
+                    <div class="col-md-12 col-sm-12">
+                        <div class="task_info text-center">
+                            @Html.TextBoxFor(m => m.m_Task.StartingDate, "{0:yyyy-MM-dd}", new { @type = "date", @readonly = "readonly", @class = "form-control text-center date1" })
+                        </div>
+                    </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                @Html.TextBoxFor(m => m.m_Task.DeadLine, "{0:yyyy-MM-dd}", new { @type = "date", @readonly = "readonly", @class = "form-control text-center date2" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                @Html.HiddenFor(model => model.isAccissable)
+                                @Html.HiddenFor(model => model.m_Task.id)
+                                @Html.HiddenFor(model => model.m_Task.Title)
+                                @Html.HiddenFor(model => model.m_Task.isFinished)
+                                @Html.HiddenFor(model => model.m_Task.Dependancy)
+                                @Html.HiddenFor(model => model.m_Task.UserId)
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="task_info text-center">
+                                <button type="submit" class="form-control btn">Submit</button>
+                            </div>
+
+
+                        </div>
+
+
+                }
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

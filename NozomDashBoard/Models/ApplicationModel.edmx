@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NozomDashBoardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DashBoardData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Details" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartingDate" Type="date" Nullable="false" />
+          <Property Name="DeadLine" Type="date" Nullable="false" />
+          <Property Name="isFinished" Type="bit" Nullable="false" />
+          <Property Name="Dependancy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DashBoardData_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="DashBoardData" Type="Self.DashBoardData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DashBoardData">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DashBoardData_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="DashBoardData" Type="Self.DashBoardData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DashBoardData">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckAuthurizationInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="UserPassWord" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startingDate" Type="date" Mode="In" />
+          <Parameter Name="endingDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="EditTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Details" Type="nvarchar" Mode="In" />
+          <Parameter Name="StartingDate" Type="date" Mode="In" />
+          <Parameter Name="DeadLine" Type="date" Mode="In" />
+          <Parameter Name="isFinished" Type="bit" Mode="In" />
+          <Parameter Name="Dependancy" Type="nvarchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EquireTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EquireType" Type="varchar" Mode="In" />
+          <Parameter Name="isFinished" Type="bit" Mode="In" />
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SetTaskFinished" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="NozomDashBoardModelStoreContainer">
+          <EntitySet Name="DashBoardData" EntityType="Self.DashBoardData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DashBoardData_Project" Association="Self.FK_DashBoardData_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="DashBoardData" EntitySet="DashBoardData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DashBoardData_Users" Association="Self.FK_DashBoardData_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DashBoardData" EntitySet="DashBoardData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NozomDashBoardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NozomDashBoardEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="CheckAuthurizationInfo" ReturnType="Collection(String)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserPassWord" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EditTask">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Details" Mode="In" Type="String" />
+            <Parameter Name="StartingDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="isFinished" Mode="In" Type="Boolean" />
+            <Parameter Name="Dependancy" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SetTaskFinished">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="DashBoardData" EntityType="NozomDashBoardModel.DashBoardData" />
+          <EntitySet Name="Project" EntityType="NozomDashBoardModel.Project" />
+          <EntitySet Name="Users" EntityType="NozomDashBoardModel.Users" />
+          <AssociationSet Name="FK_DashBoardData_Project" Association="NozomDashBoardModel.FK_DashBoardData_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="DashBoardData" EntitySet="DashBoardData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DashBoardData_Users" Association="NozomDashBoardModel.FK_DashBoardData_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DashBoardData" EntitySet="DashBoardData" />
+          </AssociationSet>
+          <FunctionImport Name="DeleteTasks">
+            <Parameter Name="startingDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endingDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="EquireTasks" ReturnType="Collection(NozomDashBoardModel.EquireTasks_Result)">
+            <Parameter Name="EquireType" Mode="In" Type="String" />
+            <Parameter Name="isFinished" Mode="In" Type="Boolean" />
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="DashBoardData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeadLine" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isFinished" Type="Boolean" Nullable="false" />
+          <Property Name="Dependancy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="NozomDashBoardModel.FK_DashBoardData_Project" FromRole="DashBoardData" ToRole="Project" />
+          <NavigationProperty Name="Users" Relationship="NozomDashBoardModel.FK_DashBoardData_Users" FromRole="DashBoardData" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DashBoardData" Relationship="NozomDashBoardModel.FK_DashBoardData_Project" FromRole="Project" ToRole="DashBoardData" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DashBoardData" Relationship="NozomDashBoardModel.FK_DashBoardData_Users" FromRole="Users" ToRole="DashBoardData" />
+        </EntityType>
+        <Association Name="FK_DashBoardData_Project">
+          <End Type="NozomDashBoardModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="NozomDashBoardModel.DashBoardData" Role="DashBoardData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DashBoardData">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DashBoardData_Users">
+          <End Type="NozomDashBoardModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="NozomDashBoardModel.DashBoardData" Role="DashBoardData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DashBoardData">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="EquireTasks_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Details" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="StartingDate" Nullable="false" />
+          <Property Type="DateTime" Name="DeadLine" Nullable="false" />
+          <Property Type="Boolean" Name="isFinished" Nullable="false" />
+          <Property Type="String" Name="Dependancy" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NozomDashBoardModelStoreContainer" CdmEntityContainer="NozomDashBoardEntities">
+          <FunctionImportMapping FunctionImportName="CheckAuthurizationInfo" FunctionName="NozomDashBoardModel.Store.CheckAuthurizationInfo" />
+          <FunctionImportMapping FunctionImportName="EditTask" FunctionName="NozomDashBoardModel.Store.EditTask" />
+          <FunctionImportMapping FunctionImportName="SetTaskFinished" FunctionName="NozomDashBoardModel.Store.SetTaskFinished" />
+          <EntitySetMapping Name="DashBoardData">
+            <EntityTypeMapping TypeName="NozomDashBoardModel.DashBoardData">
+              <MappingFragment StoreEntitySet="DashBoardData">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Dependancy" ColumnName="Dependancy" />
+                <ScalarProperty Name="isFinished" ColumnName="isFinished" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="NozomDashBoardModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NozomDashBoardModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteTasks" FunctionName="NozomDashBoardModel.Store.DeleteTasks" />
+          <FunctionImportMapping FunctionImportName="EquireTasks" FunctionName="NozomDashBoardModel.Store.EquireTasks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NozomDashBoardModel.EquireTasks_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="isFinished" ColumnName="isFinished" />
+                <ScalarProperty Name="Dependancy" ColumnName="Dependancy" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

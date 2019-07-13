@@ -1,0 +1,56 @@
+﻿@model  NozomDashBoard.Models.Account_Model
+
+
+
+<body id="LOG">
+
+
+    <div class="user-login-form">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-title text-center">
+                        <h2>
+                            User
+                            <br />
+                            L O G I N
+
+                        </h2>
+                    </div>
+
+
+                </div>
+
+                <hr />
+
+                <div class="col-md-12">
+                    <div class="form-content text-center">
+
+
+                        @Html.DropDownListFor(model => model.m_UserNameResult, Model.m_UserName, "Username", new { @required = "required" ,@class="form-control text-center stinp"})
+                        @Html.TextBoxFor(model => model.m_PassWord, new { @required = "required", @type = "password" ,@class= "form-control text-center ndinp" ,@placeholder="Password"})
+                        <button type="submit" class="form-control btn btn-primary">Sign in</button>
+
+
+
+
+                    </div>
+
+                </div>
+                
+
+
+            </div>
+            
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</body>

@@ -1,0 +1,125 @@
+﻿@model NozomDashBoard.Models.DashBoardModel
+
+
+
+
+<div class="task_assignment">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.TextBoxFor(model => model.m_Task.Title, new { @required = "required", @placeholder = "Title" ,@class="form-control text-center zero"})
+
+
+                </div>
+                
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center" >
+
+                    @Html.TextAreaFor(model => model.m_Task.Details, new { @required = "required", @placeholder = "Details" ,@class= "form-control text-center one" })
+
+                </div>
+
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.TextBoxFor(model => model.m_Task.StartingDate, "{0:yyyy-MM-dd}", new { @required = "required", @type = "date", @placeholder = "PunchLine" ,@class= "form-control text-center two" })
+
+                </div>
+
+
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.TextBoxFor(model => model.m_Task.DeadLine, "{0:yyyy-MM-dd}", new { @required = "required", @type = "date", @placeholder = "Deadline", @class = "form-control text-center three" })
+
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.TextAreaFor(model => model.m_Task.Dependancy, new { @required = "required", @placeholder = "Dependancy", @class = "form-control text-center four" })
+
+                </div>
+
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.TextAreaFor(model => model.m_Task.Notes, new { @required = "required", @placeholder = "Notes", @class = "form-control text-center five" })
+
+                </div>
+
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.DropDownListFor(model => model.m_Task.UserId, Model.m_Users, "Assigned To", new { @required = "required", @class = "form-control text-center six" })
+
+                </div>
+
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center">
+
+                    @Html.DropDownListFor(model => model.m_Task.ProjectID, Model.m_Projects, "Project", new { @required = "required", @class = "form-control text-center seven" })
+
+                </div>
+
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="task_info text-center" >
+
+                    <button type="submit" class="form-control btn btn-danger eight">Submit</button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Html.HiddenFor(model => model.m_CurrentProjectID)
