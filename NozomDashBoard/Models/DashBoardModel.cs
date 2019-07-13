@@ -8,6 +8,8 @@ namespace NozomDashBoard.Models
 {
     public class DashBoardModel
     {
+        //This model is used to handle the data posted and recieved in the dashboard.
+
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
 
         public SelectList m_DashBoardType { get; set; }
@@ -48,7 +50,7 @@ namespace NozomDashBoard.Models
 
         public DashBoardModel()
         {
-
+            //This is intentionally left blank, for mvc cannot work with parameterfull constructors only.
         }
 
         private void AquireSelectLists(bool op)
@@ -57,6 +59,7 @@ namespace NozomDashBoard.Models
 
             if (op == true)
             {
+                //This is used for editing or adding a new task, for when a selectlist of users is show, it reverse it, putting the Admin as the last user, then removes it from the list so that only the clients are applicable to be assigned tasks.
                 Useritems.Reverse();
                 Useritems.RemoveAt(3);
             }

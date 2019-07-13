@@ -8,6 +8,7 @@ namespace NozomDashBoard.Models
 {
     public class HomeModel
     {
+        //This model deals with the data of project selection page.
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
         public SelectList m_Projects { get; set; }
         public int? m_ProjectsResult { get; set; }

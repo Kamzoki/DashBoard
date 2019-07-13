@@ -1,8 +1,8 @@
-﻿//TODO: realtime updating dashboard
+﻿/*
+ * Description: This controller is responsible for controlling the dashboard itself in terms of updating, adding, or deleting tasks that is shown on the dashboard
+ * Dependancies: 1- ProjectID: this parameter is passed by from the home controller, thus, this controller will fail to work without a given ProjectID
+ */
 
-//TODO: design task details
-//TODO: design task operations
-//TODO: design signout button in Index
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,22 +17,27 @@ namespace NozomDashBoard.Controllers
 {
     public class DashBoardController : Controller
     {
+        //Enumerator that contains the different states of a dashboard client at any given point in time.
         public enum ClientState
         {
             UpToDate,
             OutDated
         };
 
+        //These static objects serve to tell the state of each registered client.
         public static ClientState Mansy = ClientState.UpToDate;
         public static ClientState Abdullah = ClientState.UpToDate;
         public static ClientState Omar = ClientState.UpToDate;
         public static ClientState Admin = ClientState.UpToDate;
 
+        //Used to access the entityframework instance of the project.
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
 
         #region Helper
+
         private DashBoardModel InitializeDashBoard(ref int? ProjectID, bool isAdmin)
         {
+            //This function initilized the dashboard model instance given to either AdminIndex or Index.
             DashBoardModel model = new DashBoardModel(ProjectID);
 
             model.m_AllTasks = db.EquireTasks("TaskStates", false, ProjectID, null).ToList();
@@ -42,11 +47,13 @@ namespace NozomDashBoard.Controllers
         }
         private bool? isUserAccissable(ref int? userID)
         {
+            //This function returns a bool that shall decide if the current user can access and modify a certain task details or not.
+            //It is used to let only the admin and the owner of a task able to modify it.
+
             string givenUserName;
 
             switch (userID)
             {
-                case 2: givenUserName = "Ahmad Abdullatef"; break;
                 case 3: givenUserName = "Omar Arf"; break;
                 case 4: givenUserName = "Abdullah Saad"; break;
                 case 5: givenUserName = "Ahmad Mansy"; break;
@@ -69,6 +76,7 @@ namespace NozomDashBoard.Controllers
 
         public JsonResult UpdateClient()
         {
+            //This function is called by the client side and is used to check if the current user is outDated or not. If yes, it returns true, thus, reloading the dashboard page to get the new data.
             switch (User.Identity.GetUserName())
             {
                 case "Admin":
@@ -106,6 +114,7 @@ namespace NozomDashBoard.Controllers
 
         public void UpdateClientState()
         {
+            //This function is used by the server after applying some change in order to set users' states other than the current user to outdated.
             if (User.Identity.GetUserName() == "Admin")
             {
                 Mansy = ClientState.OutDated;

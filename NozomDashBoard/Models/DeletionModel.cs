@@ -7,6 +7,7 @@ namespace NozomDashBoard.Models
 {
     public class DeletionModel
     {
+        //This model deals with the data needed for deleting tasks from inside the project.
         public DateTime? m_StartingDate { get; set; }
         public DateTime? m_EndingDate { get; set; }
 

@@ -8,6 +8,7 @@ namespace NozomDashBoard.Models
 {
     public class Account_Model
     {
+        //This model is used in to carry the authentication data
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
 
         public SelectList m_UserName { get; set; }
