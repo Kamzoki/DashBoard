@@ -17,6 +17,17 @@ namespace NozomDashBoard.Controllers
 {
     public class DashBoardController : Controller
     {
+        public enum ClientState
+        {
+            UpToDate,
+            OutDated
+        };
+
+        public static ClientState Mansy = ClientState.UpToDate;
+        public static ClientState Abdullah = ClientState.UpToDate;
+        public static ClientState Omar = ClientState.UpToDate;
+        public static ClientState Admin = ClientState.UpToDate;
+
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
 
         #region Helper
@@ -53,6 +64,74 @@ namespace NozomDashBoard.Controllers
             else
             {
                 return false;
+            }
+        }
+
+        public JsonResult UpdateClient()
+        {
+            switch (User.Identity.GetUserName())
+            {
+                case "Admin":
+                    if (Admin == ClientState.OutDated)
+                    {
+                        Admin = ClientState.UpToDate;
+                        return Json(new { isOutDated = "true" });
+                    }
+                    return Json(new { isOutDated = "false"});
+                case "Omar Arf":
+                    if (Omar == ClientState.OutDated)
+                    {
+                        Omar = ClientState.UpToDate;
+                        return Json(new { isOutDated = "true" });
+                    }
+                    return Json(new { isOutDated = "false" });
+                case "Abdullah Saad":
+                    if (Abdullah == ClientState.OutDated)
+                    {
+                        Abdullah = ClientState.UpToDate;
+                        return Json(new { isOutDated = "true" });
+                    }
+                    return Json(new { isOutDated = "false" });
+                case "Ahmad Mansy":
+                    if (Mansy == ClientState.OutDated)
+                    {
+                        Mansy = ClientState.UpToDate;
+                        return Json(new { isOutDated = "true" });
+                    }
+                    return Json(new { isOutDated = "false" });
+                default:
+                    return Json(new { isOutDated = "NULL" });
+            }
+        }
+
+        public void UpdateClientState()
+        {
+            if (User.Identity.GetUserName() == "Admin")
+            {
+                Mansy = ClientState.OutDated;
+                Abdullah = ClientState.OutDated;
+                Omar = ClientState.OutDated;
+            }
+
+            else if (User.Identity.GetUserName() == "Omar Arf")
+            {
+                Mansy = ClientState.OutDated;
+                Abdullah = ClientState.OutDated;
+                Admin = ClientState.OutDated;
+            }
+
+            else if (User.Identity.GetUserName() == "Ahmad Mansy")
+            {
+                Abdullah = ClientState.OutDated;
+                Omar = ClientState.OutDated;
+                Admin = ClientState.OutDated;
+            }
+
+            else if (User.Identity.GetUserName() == "Abdullah Saad")
+            {
+                Mansy = ClientState.OutDated;
+                Omar = ClientState.OutDated;
+                Admin = ClientState.OutDated;
             }
         }
         #endregion
@@ -142,6 +221,7 @@ namespace NozomDashBoard.Controllers
             {
                 db.DashBoardData.Add(recivedModel.m_Task);
                 await db.SaveChangesAsync();
+                UpdateClientState();
                 if (User.Identity.GetUserName() == "Admin")
                 {
                     return RedirectToAction("AdminIndex", new { ProjectID = recivedModel.m_CurrentProjectID });
@@ -192,7 +272,7 @@ namespace NozomDashBoard.Controllers
                             recivedModel.m_Task.StartingDate, recivedModel.m_Task.DeadLine, recivedModel.m_Task.isFinished,
                             recivedModel.m_Task.Dependancy, recivedModel.m_Task.Notes, recivedModel.m_Task.UserId);
                 await db.SaveChangesAsync();
-
+                UpdateClientState();
                 if (recivedModel.isAccissable == true)
                 {
                     return RedirectToAction("CloseWindow", "Home");
@@ -210,6 +290,7 @@ namespace NozomDashBoard.Controllers
             {
                 db.SetTaskFinished(taskid);
                 await db.SaveChangesAsync();
+                UpdateClientState();
                 if (User.Identity.GetUserName() == "Admin")
                 {
                     return RedirectToAction("AdminIndex", new { ProjectID = ProjectID });

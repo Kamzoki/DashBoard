@@ -4,9 +4,9 @@
     <title>DashBoard</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-
+    <script src="~/Scripts/DashBoard.js"></script>
 </head>
-<body>
+<body onload="CheckServerState(5000)">
     @Html.ActionLink("Sign out", "LogOff", "Account",null, new { @class = "btn btn-danger" })
 </body>
    
