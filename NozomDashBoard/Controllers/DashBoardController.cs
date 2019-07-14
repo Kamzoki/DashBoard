@@ -228,6 +228,7 @@ namespace NozomDashBoard.Controllers
             //Post new tasks to the database
             if (recivedModel != null)
             {
+                recivedModel.m_Task.ProjectID = Convert.ToInt16(recivedModel.m_CurrentProjectID);
                 db.DashBoardData.Add(recivedModel.m_Task);
                 await db.SaveChangesAsync();
                 UpdateClientState();
