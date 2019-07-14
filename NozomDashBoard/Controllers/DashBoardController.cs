@@ -120,6 +120,7 @@ namespace NozomDashBoard.Controllers
                 Mansy = ClientState.OutDated;
                 Abdullah = ClientState.OutDated;
                 Omar = ClientState.OutDated;
+                Admin = ClientState.OutDated;
             }
 
             else if (User.Identity.GetUserName() == "Omar Arf")
@@ -284,11 +285,7 @@ namespace NozomDashBoard.Controllers
                             recivedModel.m_Task.Dependancy, recivedModel.m_Task.Notes, recivedModel.m_Task.UserId);
                 await db.SaveChangesAsync();
                 UpdateClientState();
-                if (recivedModel.isAccissable == true)
-                {
-                    return RedirectToAction("CloseWindow", "Home");
-                }
-                return RedirectToAction("Index", new { ProjectID = recivedModel.m_CurrentProjectID});
+                return RedirectToAction("CloseWindow", "Home");
             }
             return RedirectToAction("ErrorPage", "Home", new { msg = "خطأ في الوصول إلى الشبكة" });
         }
