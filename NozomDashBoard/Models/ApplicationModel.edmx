@@ -107,17 +107,6 @@
             <Parameter Name="UserId" Mode="In" Type="Int32" />
             <Parameter Name="UserPassWord" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="EditTask">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="Title" Mode="In" Type="String" />
-            <Parameter Name="Details" Mode="In" Type="String" />
-            <Parameter Name="StartingDate" Mode="In" Type="DateTime" />
-            <Parameter Name="DeadLine" Mode="In" Type="DateTime" />
-            <Parameter Name="isFinished" Mode="In" Type="Boolean" />
-            <Parameter Name="Dependancy" Mode="In" Type="String" />
-            <Parameter Name="Notes" Mode="In" Type="String" />
-            <Parameter Name="UserId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="SetTaskFinished">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -137,7 +126,18 @@
             <Parameter Name="endingDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="EquireTasks" ReturnType="Collection(NozomDashBoardModel.EquireTasks_Result)">
-            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EditTask">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Details" Mode="In" Type="String" />
+            <Parameter Name="StartingDate" Mode="In" Type="DateTime" />
+            <Parameter Name="DeadLine" Mode="In" Type="DateTime" />
+            <Parameter Name="isFinished" Mode="In" Type="Boolean" />
+            <Parameter Name="Dependancy" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="DashBoardData">
@@ -270,6 +270,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditTask" FunctionName="NozomDashBoardModel.Store.EditTask" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

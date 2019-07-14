@@ -44,6 +44,37 @@ namespace NozomDashBoard.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CheckAuthurizationInfo", userIdParameter, userPassWordParameter);
         }
     
+        public virtual int SetTaskFinished(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SetTaskFinished", idParameter);
+        }
+    
+        public virtual int DeleteTasks(Nullable<System.DateTime> startingDate, Nullable<System.DateTime> endingDate)
+        {
+            var startingDateParameter = startingDate.HasValue ?
+                new ObjectParameter("startingDate", startingDate) :
+                new ObjectParameter("startingDate", typeof(System.DateTime));
+    
+            var endingDateParameter = endingDate.HasValue ?
+                new ObjectParameter("endingDate", endingDate) :
+                new ObjectParameter("endingDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteTasks", startingDateParameter, endingDateParameter);
+        }
+    
+        public virtual ObjectResult<EquireTasks_Result> EquireTasks(Nullable<int> projectID)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EquireTasks_Result>("EquireTasks", projectIDParameter);
+        }
+    
         public virtual int EditTask(Nullable<int> id, string title, string details, Nullable<System.DateTime> startingDate, Nullable<System.DateTime> deadLine, Nullable<bool> isFinished, string dependancy, string notes, Nullable<int> userId)
         {
             var idParameter = id.HasValue ?
@@ -83,37 +114,6 @@ namespace NozomDashBoard.Models
                 new ObjectParameter("UserId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditTask", idParameter, titleParameter, detailsParameter, startingDateParameter, deadLineParameter, isFinishedParameter, dependancyParameter, notesParameter, userIdParameter);
-        }
-    
-        public virtual int SetTaskFinished(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SetTaskFinished", idParameter);
-        }
-    
-        public virtual int DeleteTasks(Nullable<System.DateTime> startingDate, Nullable<System.DateTime> endingDate)
-        {
-            var startingDateParameter = startingDate.HasValue ?
-                new ObjectParameter("startingDate", startingDate) :
-                new ObjectParameter("startingDate", typeof(System.DateTime));
-    
-            var endingDateParameter = endingDate.HasValue ?
-                new ObjectParameter("endingDate", endingDate) :
-                new ObjectParameter("endingDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteTasks", startingDateParameter, endingDateParameter);
-        }
-    
-        public virtual ObjectResult<EquireTasks_Result> EquireTasks(Nullable<int> projectID)
-        {
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EquireTasks_Result>("EquireTasks", projectIDParameter);
         }
     }
 }
