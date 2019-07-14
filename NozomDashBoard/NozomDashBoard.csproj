@@ -273,6 +273,7 @@
     <Content Include="Models\ApplicationModel.edmx.diagram">
       <DependentUpon>ApplicationModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\NozomDashBoard.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DashBoard.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
