@@ -12,11 +12,17 @@ namespace NozomDashBoard.Models
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
         public SelectList m_Projects { get; set; }
         public int? m_ProjectsResult { get; set; }
-
-        public HomeModel()
+        public bool isAdmin { get; set; }
+        public Project m_NewProject { get; set; }
+        public HomeModel(bool isAdmin)
         {
             var items = db.Project.ToList();
             m_Projects = new SelectList(items, "id", "ProjectName");
+            this.isAdmin = isAdmin;
+        }
+        public HomeModel()
+        {
+
         }
 
     }

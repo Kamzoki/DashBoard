@@ -1,0 +1,45 @@
+﻿@model NozomDashBoard.Models.HomeModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProjectSelection</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"></div>
+                <div class="form-content text-center">
+
+                    @using (Html.BeginForm("AddNewProject", "Home", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(m => m.m_NewProject.ProjectName, new { @required = "required", @class = "form-control text-center", @id = "i1", @placeholder = "Project Name" })
+
+                        <button type="submit" class="form-control btn btn-warning">Submit</button>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
+
+

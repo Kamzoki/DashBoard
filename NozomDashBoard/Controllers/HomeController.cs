@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using NozomDashBoard.Models;
 using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace NozomDashBoard.Controllers
 {
@@ -19,7 +20,11 @@ namespace NozomDashBoard.Controllers
         public ActionResult ProjectSelection()
         {
             //This function opens up the home page in which the user can choose the project to access its dashboard.
-            return View(new HomeModel());
+            if (User.Identity.GetUserName() == "Admin")
+            {
+                return View(new HomeModel(true));
+            }
+            return View(new HomeModel(false));
         }
 
         [HttpPost]
@@ -43,6 +48,28 @@ namespace NozomDashBoard.Controllers
 
             return RedirectToAction("Index", "DashBoard", new { ProjectID = model.m_ProjectsResult });
 
+        }
+
+        [HttpGet]
+        public ActionResult AddNewProject()
+        {
+            return View(new HomeModel());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddNewProject(HomeModel recivedModel)
+        {
+            if (recivedModel.m_NewProject != null)
+            {
+                NozomDashBoardEntities db = new NozomDashBoardEntities();
+                db.Project.Add(recivedModel.m_NewProject);
+                await db.SaveChangesAsync();
+                return RedirectToAction("ProjectSelection");
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage", new { msg = "خطأ في الوصول إلى الشبكة" });
+            }
         }
 
         [HttpGet]

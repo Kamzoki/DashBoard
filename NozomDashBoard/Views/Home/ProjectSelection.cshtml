@@ -26,7 +26,10 @@
                         @using (Html.BeginForm("ProjectSelection", "Home", FormMethod.Post))
                         {
                             @Html.DropDownListFor(m => m.m_ProjectsResult, Model.m_Projects, "Select Project", new { @required = "required", @class = "form-control text-center", @id = "i1" })
-
+                            if (Model.isAdmin)
+                            {
+                                @Html.ActionLink("Add a new Project!", "AddNewProject", "Home");
+                            }
                             <button type="submit" class="form-control btn btn-warning">Go To DashBoard</button>
 
 

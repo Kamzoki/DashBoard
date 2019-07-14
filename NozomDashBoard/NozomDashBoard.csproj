@@ -313,6 +313,7 @@
     <Content Include="Views\Home\ErrorPage.cshtml" />
     <Content Include="Views\DashBoard\DashBoardPartial.cshtml" />
     <Content Include="Views\Home\CloseWindow.cshtml" />
+    <Content Include="Views\Home\AddNewProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
