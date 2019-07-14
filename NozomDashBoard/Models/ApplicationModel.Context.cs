@@ -107,25 +107,13 @@ namespace NozomDashBoard.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteTasks", startingDateParameter, endingDateParameter);
         }
     
-        public virtual ObjectResult<EquireTasks_Result> EquireTasks(string equireType, Nullable<bool> isFinished, Nullable<int> projectID, Nullable<int> userID)
+        public virtual ObjectResult<EquireTasks_Result> EquireTasks(Nullable<int> projectID)
         {
-            var equireTypeParameter = equireType != null ?
-                new ObjectParameter("EquireType", equireType) :
-                new ObjectParameter("EquireType", typeof(string));
-    
-            var isFinishedParameter = isFinished.HasValue ?
-                new ObjectParameter("isFinished", isFinished) :
-                new ObjectParameter("isFinished", typeof(bool));
-    
             var projectIDParameter = projectID.HasValue ?
                 new ObjectParameter("ProjectID", projectID) :
                 new ObjectParameter("ProjectID", typeof(int));
     
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EquireTasks_Result>("EquireTasks", equireTypeParameter, isFinishedParameter, projectIDParameter, userIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EquireTasks_Result>("EquireTasks", projectIDParameter);
         }
     }
 }

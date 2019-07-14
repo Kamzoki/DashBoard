@@ -37,10 +37,10 @@ namespace NozomDashBoard.Controllers
 
         private DashBoardModel InitializeDashBoard(ref int? ProjectID, bool isAdmin)
         {
-            //This function initilized the dashboard model instance given to either AdminIndex or Index.
+            //This function initilizes the dashboard model instance given to either AdminIndex or Index.
             DashBoardModel model = new DashBoardModel(ProjectID);
 
-            model.m_AllTasks = db.EquireTasks("TaskStates", false, ProjectID, null).ToList();
+            model.m_AllTasks = db.EquireTasks(ProjectID).ToList();
             model.isAdmin = isAdmin;
 
             return model;

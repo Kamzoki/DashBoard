@@ -80,10 +80,7 @@
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
         <Function Name="EquireTasks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EquireType" Type="varchar" Mode="In" />
-          <Parameter Name="isFinished" Type="bit" Mode="In" />
           <Parameter Name="ProjectID" Type="int" Mode="In" />
-          <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
         <Function Name="SetTaskFinished" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -140,10 +137,7 @@
             <Parameter Name="endingDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="EquireTasks" ReturnType="Collection(NozomDashBoardModel.EquireTasks_Result)">
-            <Parameter Name="EquireType" Mode="In" Type="String" />
-            <Parameter Name="isFinished" Mode="In" Type="Boolean" />
             <Parameter Name="ProjectID" Mode="In" Type="Int32" />
-            <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="DashBoardData">
@@ -224,7 +218,6 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NozomDashBoardModelStoreContainer" CdmEntityContainer="NozomDashBoardEntities">
           <FunctionImportMapping FunctionImportName="CheckAuthurizationInfo" FunctionName="NozomDashBoardModel.Store.CheckAuthurizationInfo" />
-          <FunctionImportMapping FunctionImportName="EditTask" FunctionName="NozomDashBoardModel.Store.EditTask" />
           <FunctionImportMapping FunctionImportName="SetTaskFinished" FunctionName="NozomDashBoardModel.Store.SetTaskFinished" />
           <EntitySetMapping Name="DashBoardData">
             <EntityTypeMapping TypeName="NozomDashBoardModel.DashBoardData">

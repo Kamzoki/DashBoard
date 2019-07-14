@@ -7,6 +7,7 @@
     <script src="~/Scripts/DashBoard.js"></script>
 </head>
 <body onload="CheckServerState(5000)">
+    @Html.ActionLink("Back", "ProjectSelection", "Home", null, new { @class = "btn btn-primary" })
     @Html.ActionLink("Sign out", "LogOff", "Account",null, new { @class = "btn btn-danger" })
 </body>
    

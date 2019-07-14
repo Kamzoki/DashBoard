@@ -22,6 +22,7 @@
                     <div class="btn btn-group">
 
                         @Html.ActionLink("New Task", "AddTask", "DashBoard", new { ProjectID = Model.m_CurrentProjectID }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Back", "ProjectSelection", "Home", null, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Sign out", "LogOff", "Account",null, new { @class = "btn btn-danger" })
 
 
