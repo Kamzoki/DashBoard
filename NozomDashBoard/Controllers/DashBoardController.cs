@@ -32,7 +32,7 @@ namespace NozomDashBoard.Controllers
 
         //Used to access the entityframework instance of the project.
         private NozomDashBoardEntities db = new NozomDashBoardEntities();
-
+        
         #region Helper
 
         private DashBoardModel InitializeDashBoard(ref int? ProjectID, bool isAdmin)
