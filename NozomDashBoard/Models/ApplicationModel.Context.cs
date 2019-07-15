@@ -27,9 +27,9 @@ namespace NozomDashBoard.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DashBoardData> DashBoardData { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<DashBoardData> DashBoardData { get; set; }
     
         public virtual ObjectResult<string> CheckAuthurizationInfo(Nullable<int> userId, string userPassWord)
         {
