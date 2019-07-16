@@ -45,7 +45,7 @@
                                             if (task.DeadLine.ToShortDateString() == DateTime.Now.ToShortDateString())
                                             {
                                                 <tr>
-                                                    <td>
+                                                    <td style="background-color:#d9534f;">
                                                         <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 5})" target="popup"
                                                            onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 5})', 'popup', 'width=600,height=600'); return false;">
                                                             @Html.DisplayName(task.Title)
@@ -114,8 +114,8 @@
                                             
                                             if (task.DeadLine.ToShortDateString() == DateTime.Now.ToShortDateString())
                                             {
-                                                <tr style="background-color:#870505">
-                                                    <td>
+                                                <tr>
+                                                    <td style="background-color:#d9534f;">
                                                         <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 4})" target="popup"
                                                             onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 4})', 'popup', 'width=600,height=600'); return false;">
                                                             @Html.DisplayName(task.Title)
@@ -184,8 +184,8 @@
 
                                             if (task.DeadLine.ToShortDateString() == DateTime.Now.ToShortDateString())
                                             {
-                                                <tr style="background-color:#870505">
-                                                    <td>
+                                                <tr>
+                                                    <td style="background-color:#d9534f;">
                                                         <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 3})" target="popup"
                                                            onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 3})', 'popup', 'width=600,height=600'); return false;">
                                                             @Html.DisplayName(task.Title)

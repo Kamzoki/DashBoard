@@ -107,7 +107,7 @@ table{
 
     background-color:#D5D5D5;
     border-bottom:4px solid #23415c;
-    
+    border-radius:20px 0px 20px 0px;
     
    
 }
@@ -127,6 +127,7 @@ table{
     color:#23415c;
     font-weight:bold;
     text-decoration:none;
+    outline:none;
 
 }
 .tbl-content table tbody tr td:hover {
