@@ -20,23 +20,38 @@
     <div class="home">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"></div>
+                <div class="col-md-12">
                     <div class="form-content text-center">
 
                         @using (Html.BeginForm("ProjectSelection", "Home", FormMethod.Post))
                         {
                             @Html.DropDownListFor(m => m.m_ProjectsResult, Model.m_Projects, "Select Project", new { @required = "required", @class = "form-control text-center", @id = "i1" })
-                            if (Model.isAdmin)
-                            {
-                                @Html.ActionLink("Add a new Project!", "AddNewProject", "Home");
-                            }
                             <button type="submit" class="form-control btn btn-warning">Go To DashBoard</button>
-
-
 
                         }
 
                     </div>
+                </div>
+               
+                <br />
+                <div class="col-md-12">
+                    <div class="form-content text-center">
+                        @using (Html.BeginForm("ProjectSelection", "Home", FormMethod.Post))
+                        {
+
+                            if (Model.isAdmin)
+                            {
+                                @Html.ActionLink("Add a new Project!", "AddNewProject", "Home", new { @class = "addprobutt" });
+                            }
+
+
+                        }
+                    </div>
+
+
+                </div>
+
+
             </div>
             
         </div>     

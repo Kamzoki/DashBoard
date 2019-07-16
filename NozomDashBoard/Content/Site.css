@@ -37,6 +37,109 @@ table{
   
 
 }
+.tbmansy {
+
+    margin-top:100px;
+    opacity:0;
+    animation-name:pretty1;
+    animation-duration:1s;
+    animation-iteration-count:1;
+    animation-fill-mode:both;
+}
+
+.tbabdullah {
+    margin-top:150px;
+    opacity:0;
+    animation-name:pretty2;
+    animation-duration:1s;
+    animation-iteration-count:1;
+    animation-fill-mode:both;
+}
+
+.tbaref{
+
+    margin-top:200px;
+    opacity:0;
+    animation-name:pretty3;
+    animation-duration:1s;
+    animation-iteration-count:1;
+    animation-fill-mode:both;
+
+}
+
+@keyframes pretty1 {
+    from {
+        margin-top:100px;
+        opacity:0;
+    }
+
+    to {
+        margin-top:3px;
+        opacity:1;
+    }
+
+}
+
+@keyframes pretty2 {
+     from {
+        margin-top:150px;
+        opacity:0;
+    }
+
+    to {
+        margin-top:3px;
+        opacity:1;
+    }
+}
+
+@keyframes pretty3 {
+     from {
+        margin-top:200px;
+        opacity:0;
+    }
+
+    to {
+        margin-top:3px;
+        opacity:1;
+    }
+}
+.tbl-content table tbody tr td{
+
+    background-color:#D5D5D5;
+    border-bottom:4px solid #23415c;
+    
+    
+   
+}
+
+.tbl-content table tbody tr td button.btn-block {
+    border-radius:20px 20px 20px 20px;
+    padding:5px;
+    background-color:rgba(37, 196, 129, 0.4);
+    border:none;
+    font-weight:bold;
+    transition:all 0.5s ease-in-out;
+}
+
+
+
+.tbl-content table tbody tr td a {
+    color:#23415c;
+    font-weight:bold;
+    text-decoration:none;
+
+}
+.tbl-content table tbody tr td:hover {
+
+      background-color:#25c481;
+      cursor:pointer;
+    }
+.tbl-content table tbody tr td:hover button.btn-block {
+
+    background-color:#D5D5D5;
+    color:#25c481;
+
+    }
 
 
 th{
@@ -269,6 +372,7 @@ section{
 
 
 .home {
+    position:relative;
     margin:19% auto;
     background-color:#23415c;
     border:5px solid #25c481;
@@ -316,6 +420,7 @@ section{
     animation-name:changepositiontoleft;
     animation-duration:0.8s;
     animation-fill-mode:both;
+    transition:all 0.5s ease-in-out;
 
 }
 
@@ -330,6 +435,37 @@ section{
         opacity:1;
     }
 }
+
+
+
+.home .form-content .addprobutt{
+    position:relative;
+    background-color:rgba(59, 14, 61, 0.4);
+    text-decoration:none;
+    padding:10px 20px 10px 20px;
+    text-align:center;
+    vertical-align:middle;
+    left:-55%;
+    font-weight:bold;
+    color:#ffffff;
+    letter-spacing:5px;
+    z-index:9999;
+    border-radius:0 20px 20px 0px;
+    transition:all 0.5s ease-in-out;
+    
+
+}
+.home .form-content .addprobutt:hover {
+    background-color:rgba(59, 14, 61, 0.8);
+    left:-40%;
+
+    }
+
+.home .form-content .addprobutt:hover .home .form-content .btn-warning {
+    margin-left:50px;
+}
+
+
 
 /*ProjectSelection page end*/
 

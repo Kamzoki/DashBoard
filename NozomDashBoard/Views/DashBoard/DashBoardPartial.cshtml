@@ -32,7 +32,7 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="tbl-content">
+                    <div class="tbl-content tbmansy">
                         <table cellpadding="0" cellspacing="0" border="0" id="5">
                             <tbody>
                                 @if (Model.m_AllTasks != null)
@@ -44,7 +44,7 @@
 
                                             if (task.DeadLine.ToShortDateString() == DateTime.Now.ToShortDateString())
                                             {
-                                                <tr style="background-color:#870505">
+                                                <tr>
                                                     <td>
                                                         <a href="@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 5})" target="popup"
                                                            onclick="window.open('@Url.Action("EditTask", "DashBoard", new { taskID = task.id, ProjectID = Model.m_CurrentProjectID, userID = 5})', 'popup', 'width=600,height=600'); return false;">
@@ -102,7 +102,7 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="tbl-content">
+                    <div class="tbl-content tbabdullah">
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 @if (Model.m_AllTasks != null)
@@ -172,7 +172,7 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="tbl-content">
+                    <div class="tbl-content tbaref">
                         <table cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 @if (Model.m_AllTasks != null)
@@ -234,4 +234,9 @@
         </div>
 
     </section>
+
+
+
+
+
 </body>
